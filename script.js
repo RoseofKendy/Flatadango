@@ -7,7 +7,7 @@ const title = document.getElementById('title');
 const poster = document.getElementById('poster');
 const runtime = document.getElementById('runtime');
 const showtime = document.getElementById('showtime');
-const description = document.getElementById('film-info');
+const description = document.getElementById('description');
 const ticketBtn = document.getElementById('buy-ticket');
 const availableTickets = document.getElementById('available-tickets');
 
