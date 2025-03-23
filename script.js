@@ -24,12 +24,14 @@ function loadFilms() {
         renderFilmItem(film);
       });
 
-      if (!currentFilm) {
-        displayFilmDetails(films[0]); // Show first film's details
-      } else {
-        const updated = films.find(f => f.id === currentFilm.id);
-        if (updated) displayFilmDetails(updated);
-      }
+      const savedFilmId = localStorage.getItem('selectedFilmId');
+const selectedFilm = films.find(f => f.id == savedFilmId);
+
+if (selectedFilm) {
+  displayFilmDetails(selectedFilm);
+} else {
+  displayFilmDetails(films[0]); // Default to first film if no match
+}
     })
     .catch(err => console.error('Error loading films:', err));
 }
@@ -143,6 +145,10 @@ function deleteFilm(id, listItem) {
       .catch((err) => {
         console.error("Error deleting film:", err);
       });
+      if (currentFilm && currentFilm.id === id) {
+        localStorage.removeItem('selectedFilmId');
+        clearFilmDetails();
+      }      
   }
 
 // Display the selected film's details
@@ -159,6 +165,7 @@ function displayFilmDetails(film) {
 
   ticketBtn.textContent = ticketsAvailable > 0 ? 'Buy Ticket' : 'Sold Out';
   ticketBtn.disabled = ticketsAvailable === 0;
+  localStorage.setItem('selectedFilmId', film.id);
 }
 
 // Handle Buy Ticket click
@@ -181,16 +188,18 @@ ticketBtn.addEventListener('click', () => {
         .then(res => res.json())
         .then(updatedFilm => {
           // Update local film object and UI
+          currentFilm = updatedFilm;
           displayFilmDetails(updatedFilm);
   
           // Update the film item in the sidebar (mark sold-out if needed)
           const filmItem = [...filmList.children].find(li => li.dataset.id == updatedFilm.id);
           if (filmItem) {
-            const isSoldOut = updatedFilm.capacity - updatedFilm.tickets_sold === 0;
-            filmItem.classList.toggle('sold-out', isSoldOut);
+            if (updatedFilm.capacity - updatedFilm.tickets_sold === 0) {
+                filmItem.classList.add('sold-out');
+              }
           }
   
-          // Create ticket (optional)
+          // Create ticket
           createTicket(updatedFilm.id);
         })
         .catch(err => console.error('Error buying ticket:', err));
