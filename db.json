@@ -16,7 +16,7 @@
       "runtime": 148,
       "capacity": 120,
       "showtime": "09:00PM",
-      "tickets_sold": 79,
+      "tickets_sold": 81,
       "description": "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
       "poster": "https://filmfisher.com/wp-content/uploads/2014/03/inception_ver12_xlg-600x885.jpg"
     },
@@ -46,7 +46,7 @@
       "runtime": 195,
       "capacity": 120,
       "showtime": "05:30PM",
-      "tickets_sold": 90,
+      "tickets_sold": 92,
       "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
       "poster": "https://www.originalfilmart.com/cdn/shop/products/titanic_1997_original_film_art_713cc08c-5fe2-49d1-bd32-51a1d5890d43_5000x.jpg?v=1675533926"
     },
@@ -103,12 +103,22 @@
     {
       "id": "11",
       "title": "Spider-Man: No Way Home",
-      "runtime": "148",
+      "runtime": 148,
       "capacity": 200,
       "showtime": "6:00PM",
       "tickets_sold": 200,
       "poster": "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
       "description": "Peter Parker seeks the help of Doctor Strange when his identity is revealed to the world, unleashing a multiverse of madness."
+    },
+    {
+      "id": "12",
+      "title": "Avengers: Endgame",
+      "runtime": 181,
+      "capacity": 100,
+      "showtime": "7:30 PM",
+      "tickets_sold": 95,
+      "poster": "https://m.media-amazon.com/images/I/81ExhpBEbHL._AC_SY679_.jpg",
+      "description": "After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos' actions and restore balance to the universe."
     }
   ],
   "tickets": [
@@ -151,6 +161,22 @@
     {
       "id": "848a",
       "film_id": "12"
+    },
+    {
+      "id": "9a37",
+      "film_id": "5"
+    },
+    {
+      "id": "5730",
+      "film_id": "2"
+    },
+    {
+      "id": "8c9b",
+      "film_id": "5"
+    },
+    {
+      "id": "3b04",
+      "film_id": "2"
     }
   ]
 }
