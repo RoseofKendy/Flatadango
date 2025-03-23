@@ -54,7 +54,7 @@ function renderFilmItem(film) {
   const posterImg = document.createElement('img');
   posterImg.src = film.poster;
   posterImg.alt = `${film.title} Poster`;
-  posterImg.classList.add('film-poster'); // Add your own CSS if needed
+  posterImg.classList.add('film-poster');
 
   const titleSpan = document.createElement('span');
   titleSpan.textContent = film.title;
@@ -79,8 +79,8 @@ function renderFilmItem(film) {
   deleteBtn.classList.add('delete-btn');
 
   deleteBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent triggering the li click
-    deleteFilm(film.id, li); // Use `li` to remove from DOM
+    e.stopPropagation(); 
+    deleteFilm(film.id, li);
   });
 
   li.appendChild(deleteBtn);
@@ -96,7 +96,7 @@ function renderFilmItem(film) {
     const posterImg = document.createElement('img');
     posterImg.src = film.poster;
     posterImg.alt = `${film.title} Poster`;
-    posterImg.classList.add('film-poster'); // Add your own CSS if needed
+    posterImg.classList.add('film-poster');
   
     // Create title
     const titleSpan = document.createElement('span');
@@ -191,7 +191,7 @@ ticketBtn.addEventListener('click', () => {
           currentFilm = updatedFilm;
           displayFilmDetails(updatedFilm);
   
-          // Update the film item in the sidebar (mark sold-out if needed)
+          // Update the film item in the sidebar
           const filmItem = [...filmList.children].find(li => li.dataset.id == updatedFilm.id);
           if (filmItem) {
             if (updatedFilm.capacity - updatedFilm.tickets_sold === 0) {
