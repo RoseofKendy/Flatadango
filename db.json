@@ -6,19 +6,151 @@
       "runtime": 108,
       "capacity": 30,
       "showtime": "04:00PM",
-      "tickets_sold": 10,
+      "tickets_sold": 22,
       "description": "A giant lizard terrorizes a rural Texas community...",
       "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Inception",
+      "runtime": 148,
+      "capacity": 120,
+      "showtime": "09:00PM",
+      "tickets_sold": 79,
+      "description": "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+      "poster": "https://filmfisher.com/wp-content/uploads/2014/03/inception_ver12_xlg-600x885.jpg"
+    },
+    {
+      "id": "3",
+      "title": "The Dark Knight",
+      "runtime": 152,
+      "capacity": 90,
+      "showtime": "08:30PM",
+      "tickets_sold": 73,
+      "description": "When the menace known as the Joker emerges, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      "poster": "https://www.vintagemovieposters.co.uk/wp-content/uploads/2019/04/IMG_7966.jpeg"
+    },
+    {
+      "id": "4",
+      "title": "Forrest Gump",
+      "runtime": 142,
+      "capacity": 80,
+      "showtime": "06:00PM",
+      "tickets_sold": 33,
+      "description": "The presidencies of Kennedy and Johnson, Vietnam, Watergate, and other history unfold through the perspective of a man with a low IQ.",
+      "poster": "https://ebertfest.com/sites/default/files/s-l1600.jpg"
+    },
+    {
+      "id": "5",
+      "title": "Titanic",
+      "runtime": 195,
+      "capacity": 120,
+      "showtime": "05:30PM",
+      "tickets_sold": 90,
+      "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+      "poster": "https://www.originalfilmart.com/cdn/shop/products/titanic_1997_original_film_art_713cc08c-5fe2-49d1-bd32-51a1d5890d43_5000x.jpg?v=1675533926"
+    },
+    {
+      "id": "6",
+      "title": "The Godfather",
+      "runtime": 175,
+      "capacity": 100,
+      "showtime": "08:00PM",
+      "tickets_sold": 65,
+      "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+      "poster": "https://alternativemovieposters.com/wp-content/uploads/2024/05/Ruiz-Burgos_Godfather.jpg"
+    },
+    {
+      "id": "7",
+      "title": "Pulp Fiction",
+      "runtime": 154,
+      "capacity": 85,
+      "showtime": "10:00PM",
+      "tickets_sold": 56,
+      "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in tales of violence and redemption.",
+      "poster": "https://m.media-amazon.com/images/I/71c05lTE03L._AC_SY679_.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Fight Club",
+      "runtime": 139,
+      "capacity": 90,
+      "showtime": "07:30PM",
+      "tickets_sold": 41,
+      "description": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into much more.",
+      "poster": "https://m.media-amazon.com/images/I/51v5ZpFyaFL._AC_.jpg"
+    },
+    {
+      "id": "9",
+      "title": "The Matrix",
+      "runtime": 136,
+      "capacity": 100,
+      "showtime": "09:30PM",
+      "tickets_sold": 61,
+      "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+      "poster": "https://m.media-amazon.com/images/I/51EG732BV3L._AC_.jpg"
+    },
+    {
+      "id": "10",
+      "title": "Interstellar",
+      "runtime": 169,
+      "capacity": 110,
+      "showtime": "04:30PM",
+      "tickets_sold": 47,
+      "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      "poster": "https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SY679_.jpg"
+    },
+    {
+      "id": "11",
+      "title": "Spider-Man: No Way Home",
+      "runtime": "148",
+      "capacity": 200,
+      "showtime": "6:00PM",
+      "tickets_sold": 200,
+      "poster": "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
+      "description": "Peter Parker seeks the help of Doctor Strange when his identity is revealed to the world, unleashing a multiverse of madness."
     }
   ],
   "tickets": [
     {
-      "id": "ecf3",
+      "id": "ef22",
       "film_id": "1"
     },
     {
-      "id": "4c2b",
+      "id": "3aad",
       "film_id": "1"
+    },
+    {
+      "id": "334a",
+      "film_id": "1"
+    },
+    {
+      "id": "7985",
+      "film_id": "1"
+    },
+    {
+      "id": "0cbe",
+      "film_id": "3"
+    },
+    {
+      "id": "c235",
+      "film_id": "8"
+    },
+    {
+      "id": "d160",
+      "film_id": "9"
+    },
+    {
+      "id": "9830",
+      "film_id": "2"
+    },
+    {
+      "id": "f81a",
+      "film_id": "7"
+    },
+    {
+      "id": "848a",
+      "film_id": "12"
     }
   ]
 }
