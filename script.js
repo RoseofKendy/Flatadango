@@ -5,12 +5,12 @@ const BASE_URL = 'http://localhost:3000';
 const filmList = document.getElementById('films');
 const title = document.getElementById('title');
 const poster = document.getElementById('poster');
+const container = document.getElementById('film-posters');
 const runtime = document.getElementById('runtime');
 const showtime = document.getElementById('showtime');
 const description = document.getElementById('description');
 const ticketBtn = document.getElementById('buy-ticket');
 const availableTickets = document.getElementById('available-tickets');
-const deleteBtn = document.getElementById('delete-film');
 
 let currentFilm = null;
 
@@ -20,26 +20,130 @@ function loadFilms() {
     .then(res => res.json())
     .then(films => {
       filmList.innerHTML = ''; // Clear placeholder
-      films.forEach(film => renderFilmItem(film));
-      displayFilmDetails(films[0]); // Show first film's details
+      films.forEach(film => {
+        renderFilmItem(film);
+      });
+
+      if (!currentFilm) {
+        displayFilmDetails(films[0]); // Show first film's details
+      } else {
+        const updated = films.find(f => f.id === currentFilm.id);
+        if (updated) displayFilmDetails(updated);
+      }
     })
     .catch(err => console.error('Error loading films:', err));
 }
 
+function fetchAllFilms() {
+    fetch("http://localhost:3000/films")
+      .then(res => res.json())
+      .then(films => {
+        films.forEach(film => renderFilmItem(film));
+      });
+  }
 // Render each film in the film list
 function renderFilmItem(film) {
   const li = document.createElement('li');
+  li.className = 'film item';
   li.textContent = film.title;
   li.classList.add('film', 'item');
   li.dataset.id = film.id;
+
+  const posterImg = document.createElement('img');
+  posterImg.src = film.poster;
+  posterImg.alt = `${film.title} Poster`;
+  posterImg.classList.add('film-poster'); // Add your own CSS if needed
+
+  const titleSpan = document.createElement('span');
+  titleSpan.textContent = film.title;
+
+  // Append poster and title to the list item
+  li.appendChild(posterImg);
+  li.appendChild(titleSpan);
 
   if (film.capacity - film.tickets_sold === 0) {
     li.classList.add('sold-out');
   }
 
-  li.addEventListener('click', () => displayFilmDetails(film));
+  li.addEventListener('click', () => {
+    fetch(`${BASE_URL}/films/${film.id}`)
+      .then(res => res.json())
+      .then(updatedFilm => displayFilmDetails(updatedFilm))
+      .catch(err => console.error('Error fetching film details:', err));
+  });
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.classList.add('delete-btn');
+
+  deleteBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent triggering the li click
+    deleteFilm(film.id, li); // Use `li` to remove from DOM
+  });
+
+  li.appendChild(deleteBtn);
   filmList.appendChild(li);
 }
+
+function renderFilmItem(film) {
+    const li = document.createElement('li');
+    li.className = 'film item';
+    li.dataset.id = film.id;
+  
+    // Create poster image
+    const posterImg = document.createElement('img');
+    posterImg.src = film.poster;
+    posterImg.alt = `${film.title} Poster`;
+    posterImg.classList.add('film-poster'); // Add your own CSS if needed
+  
+    // Create title
+    const titleSpan = document.createElement('span');
+    titleSpan.textContent = film.title;
+  
+    // Append poster and title to the list item
+    li.appendChild(posterImg);
+    li.appendChild(titleSpan);
+  
+    // Sold out class
+    if (film.capacity - film.tickets_sold === 0) {
+      li.classList.add('sold-out');
+    }
+  
+    // Click to show film details
+    li.addEventListener('click', () => {
+      fetch(`${BASE_URL}/films/${film.id}`)
+        .then(res => res.json())
+        .then(updatedFilm => displayFilmDetails(updatedFilm))
+        .catch(err => console.error('Error fetching film details:', err));
+    });
+  
+    // Add delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent triggering film click
+      deleteFilm(film.id, li);
+    });
+  
+    li.appendChild(deleteBtn);
+    filmList.appendChild(li);
+  }
+  
+  
+
+function deleteFilm(id, listItem) {
+    fetch(`http://localhost:3000/films/${id}`, {
+      method: "DELETE"
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to delete film.");
+        listItem.remove(); // Remove it from the DOM
+      })
+      .catch((err) => {
+        console.error("Error deleting film:", err);
+      });
+  }
 
 // Display the selected film's details
 function displayFilmDetails(film) {
@@ -59,55 +163,40 @@ function displayFilmDetails(film) {
 
 // Handle Buy Ticket click
 ticketBtn.addEventListener('click', () => {
-  if (!currentFilm) return;
-
-  let ticketsLeft = currentFilm.capacity - currentFilm.tickets_sold;
-
-  if (ticketsLeft > 0) {
-    currentFilm.tickets_sold += 1;
-    updateTickets(currentFilm.id, currentFilm.tickets_sold);
-    createTicket(currentFilm.id);
-    availableTickets.textContent = currentFilm.capacity - currentFilm.tickets_sold;
-
-    if (available > 0) {
-        updateTickets(currentFilm);     // Update the film's tickets_sold
-        createTicket(currentFilm.id);   // Post the ticket
-      }
-
-    if (currentFilm.capacity - currentFilm.tickets_sold === 0) {
-      ticketBtn.textContent = 'Sold Out';
-      ticketBtn.disabled = true;
-      // Optional: update menu item style to sold out
-      const soldOutFilm = [...filmList.children].find(li => li.dataset.id == currentFilm.id);
-      soldOutFilm.classList.add('sold-out');
-    }
-  }
-});
-
-deleteBtn.addEventListener('click', () => {
     if (!currentFilm) return;
   
-    fetch(`${BASE_URL}/films/${currentFilm.id}`, {
-      method: 'DELETE'
-    })
-      .then(() => {
-        // Remove the film from the list
-        const filmItem = [...filmList.children].find(li => li.dataset.id == currentFilm.id);
-        if (filmItem) filmItem.remove();
+    let ticketsLeft = currentFilm.capacity - currentFilm.tickets_sold;
   
-        // Optionally show next film or clear details
-        fetch(`${BASE_URL}/films`)
-          .then(res => res.json())
-          .then(films => {
-            if (films.length > 0) {
-              displayFilmDetails(films[0]);
-            } else {
-              clearFilmDetails();
-            }
-          });
+    if (ticketsLeft > 0) {
+      const newTicketsSold = currentFilm.tickets_sold + 1;
+  
+      // Send PATCH request to update the backend
+      fetch(`${BASE_URL}/films/${currentFilm.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tickets_sold: newTicketsSold })
       })
-      .catch(err => console.error('Error deleting film:', err));
+        .then(res => res.json())
+        .then(updatedFilm => {
+          // Update local film object and UI
+          displayFilmDetails(updatedFilm);
+  
+          // Update the film item in the sidebar (mark sold-out if needed)
+          const filmItem = [...filmList.children].find(li => li.dataset.id == updatedFilm.id);
+          if (filmItem) {
+            const isSoldOut = updatedFilm.capacity - updatedFilm.tickets_sold === 0;
+            filmItem.classList.toggle('sold-out', isSoldOut);
+          }
+  
+          // Create ticket (optional)
+          createTicket(updatedFilm.id);
+        })
+        .catch(err => console.error('Error buying ticket:', err));
+    }
   });
+  
   
   // Clear film details if no films are left
   function clearFilmDetails() {
@@ -145,4 +234,6 @@ function createTicket(filmId) {
   }
   
 // Load everything on page load
-document.addEventListener('DOMContentLoaded', loadFilms);
+document.addEventListener('DOMContentLoaded', () => {
+    loadFilms();
+});
