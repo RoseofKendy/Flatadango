@@ -1,5 +1,5 @@
 // Base URL for JSON Server
-const BASE_URL = 'https://flatadango-api.onrender.com';
+const BASE_URL = 'https://flatadango-jq0q.onrender.com';
 
 fetch(`${BASE_URL}/films`)
   .then(res => res.json())
