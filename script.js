@@ -1,5 +1,9 @@
 // Base URL for JSON Server
-const BASE_URL = 'https://flatadango-api.onrender.com/';
+const BASE_URL = 'https://flatadango-api.onrender.com';
+
+fetch(`${BASE_URL}/films`)
+  .then(res => res.json())
+  .then(data => console.log(data));
 
 // DOM elements
 const filmList = document.getElementById('films');
@@ -13,10 +17,6 @@ const ticketBtn = document.getElementById('buy-ticket');
 const availableTickets = document.getElementById('available-tickets');
 
 let currentFilm = null;
-
-fetch(`${BASE_URL}/films`)
-  .then(res => res.json())
-  .then(data => console.log(data));
 
 // Fetch all films and render them in the sidebar
 function loadFilms() {
