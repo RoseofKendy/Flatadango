@@ -1,5 +1,5 @@
 // Base URL for JSON Server
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://flatadango-api.onrender.com';
 
 // DOM elements
 const filmList = document.getElementById('films');
@@ -37,7 +37,7 @@ if (selectedFilm) {
 }
 
 function fetchAllFilms() {
-    fetch("http://localhost:3000/films")
+    fetch("${BASE_URL}/films")
       .then(res => res.json())
       .then(films => {
         films.forEach(film => renderFilmItem(film));
@@ -135,7 +135,7 @@ function renderFilmItem(film) {
   
 
 function deleteFilm(id, listItem) {
-    fetch(`http://localhost:3000/films/${id}`, {
+    fetch(`${BASE_URL}/films/${id}`, {
       method: "DELETE"
     })
       .then((res) => {
