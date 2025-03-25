@@ -14,6 +14,10 @@ const availableTickets = document.getElementById('available-tickets');
 
 let currentFilm = null;
 
+fetch(`${BASE_URL}/films`)
+  .then(res => res.json())
+  .then(data => console.log(data));
+
 // Fetch all films and render them in the sidebar
 function loadFilms() {
   fetch(`${BASE_URL}/films`)
