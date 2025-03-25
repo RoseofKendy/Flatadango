@@ -1,5 +1,5 @@
 // Base URL for JSON Server
-const BASE_URL = 'https://flatadango-api.onrender.com';
+const BASE_URL = 'https://flatadango-api.onrender.com/films';
 
 // DOM elements
 const filmList = document.getElementById('films');
