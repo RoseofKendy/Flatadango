@@ -2,7 +2,7 @@
     "name": "flatadango",
     "version": "1.0.0",
     "description": "Flatadango movie ticket app",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "start": "node server.js"
     },
@@ -10,6 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "cors": "^2.8.5",
         "json-server": "^0.17.4"
     }
 }
